@@ -20,15 +20,10 @@ public class ExpenseController {
     private UserService userService;
 
     @GetMapping
-    public List<Expense> getAllExpenses(
-            Authentication authentication,
-            @RequestParam(required = false) String sortField,
-            @RequestParam(required = false) String sortOrder,
-            @RequestParam(required = false) String category
-    ) {
+    public List<Expense> getAllExpenses(Authentication authentication) {
         String username = authentication.getName();
         User user = userService.findByUsername(username);
-        return expenseService.getExpensesForUser(user, sortField, sortOrder, category);
+        return expenseService.getExpensesForUser(user);
     }
 
     @PostMapping
