@@ -23,7 +23,8 @@ public class ExpenseController {
     public List<Expense> getAllExpenses(Authentication authentication) {
         String username = authentication.getName();
         User user = userService.findByUsername(username);
-        return expenseService.getExpensesForUser(user);
+        // Pass null for sortField, sortOrder, and category for default behavior
+        return expenseService.getExpensesForUser(user, null, null, null);
     }
 
     @PostMapping
